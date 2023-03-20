@@ -1,0 +1,14 @@
+@import './base.css';
+
+body {
+  display: flex;
+  place-items: center;
+}
+
+#app {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 0 2rem;
+}
+
