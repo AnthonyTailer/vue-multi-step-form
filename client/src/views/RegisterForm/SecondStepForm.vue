@@ -1,0 +1,121 @@
+<template>
+  <h1>Etapa 2 de 4</h1>
+  <h1>{{ formValues.personType === 'individual' ? 'Pessoa Física' : 'Pessoa Jurídica' }}</h1>
+
+    <div v-if="formValues.personType === 'individual'">
+      <BaseInput 
+        name="name"
+        label="Nome" 
+        v-model="formValues.name"
+        :error="v$.name.$errors?.[0]?.$message"
+      />
+
+      <BaseInput 
+        name="cpf"
+        label="CPF" 
+        v-model="formValues.cpf"
+        :error="v$.cpf.$errors?.[0]?.$message"
+      />
+
+      <BaseInput 
+        name="birth"
+        type="date"
+        label="Data de Nascimento" 
+        v-model="formValues.birth"
+        :error="v$.birth.$errors?.[0]?.$message"
+      />
+
+      <BaseInput 
+        name="phone"
+        label="Telefone" 
+        v-model="formValues.phone"
+        :error="v$.phone.$errors?.[0]?.$message"
+      />
+    </div>
+
+    <div v-else-if="formValues.personType === 'company'">
+      <BaseInput 
+        name="corporateName"
+        label="Razão Social" 
+        v-model="formValues.corporateName"
+        :error="v$.corporateName.$errors?.[0]?.$message"
+      />
+
+      <BaseInput 
+        name="cnpj"
+        label="CNPJ" 
+        v-model="formValues.cnpj"
+        :error="v$.cnpj.$errors?.[0]?.$message"
+      />
+
+      <BaseInput 
+        name="openingDate"
+        type="date"
+        label="Data de Abertura" 
+        v-model="formValues.openingDate"
+        :error="v$.openingDate.$errors?.[0]?.$message"
+      />
+
+      <BaseInput 
+        name="phone"
+        label="Telefone" 
+        v-model="formValues.phone"
+        :error="v$.phone.$errors?.[0]?.$message"
+      />
+    </div>
+
+    <BaseButton
+        @click="onSubmitStep"
+      >
+        Continuar
+      </BaseButton>
+
+      <BaseButton
+        v-if="currentStep > 0"
+        outlined
+        @click="onPreviousStep"
+      >
+        Voltar
+      </BaseButton>
+</template>
+<script>
+import useValidate from "@vuelidate/core";
+import useForm from '../../store/form.js';
+import BaseInput from '../../components/BaseInput.vue';
+import BaseButton from '../../components/BaseButton.vue';
+
+export default {
+  props : {
+    currentStep: { type: Number, default: 0 },
+    formValues: { type: Object, default: {} }
+  },
+  components: { BaseInput, BaseButton },
+  setup(props) {
+    const {
+      getValidationRules
+    } = useForm();
+
+    const rules = getValidationRules(props.formValues);
+    const v$ = useValidate(rules.value[props.currentStep], props.formValues);
+
+    return { v$ }
+  },
+  emits: ['submitValidStep', 'submitPreviousStep'],
+  methods: {
+    onSubmitStep ()  {
+       // validate fields
+      this.v$.$validate(); // checks all inputs
+
+      if (!this.v$.$error) {
+        // pass to the next step
+        console.log(`Valid STEP ${this.currentStep}`)
+        this.$emit('submitValidStep')
+      }
+    },
+    onPreviousStep () {
+      this.$emit('submitPreviousStep')
+    }
+  },
+}
+</script>
+<style></style>
