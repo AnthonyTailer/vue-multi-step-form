@@ -53,7 +53,7 @@ export default {
 
     return { v$ }
   },
-  emits: ['submitValidStep', 'submitPreviousStep'],
+  emits: ['submitValidStep', 'submitPreviousStep', 'submitFinalStep'],
   methods: {
     onPreviousStep () {
       this.$emit('submitPreviousStep')

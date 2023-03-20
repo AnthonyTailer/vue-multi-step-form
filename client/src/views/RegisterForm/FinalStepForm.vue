@@ -125,13 +125,17 @@ export default {
 
     return { v$ }
   },
-  emits: ['submitValidStep', 'submitPreviousStep'],
+  emits: ['submitValidStep', 'submitPreviousStep', 'submitFinalStep'],
   methods: {
+    onPreviousStep () {
+      this.$emit('submitPreviousStep')
+    },
     onSubmitStep ()  {
        // validate fields
       this.v$.$validate(); // checks all inputs
 
       if (!this.v$.$error) {
+        console.log('FINAL STEP is VALID')
         // pass to the POST backend step
         this.$emit('submitFinalStep')
       }

@@ -107,7 +107,7 @@ export default {
 
     return { v$ }
   },
-  emits: ['submitValidStep', 'submitPreviousStep'],
+  emits: ['submitValidStep', 'submitPreviousStep', 'submitFinalStep'],
   methods: {
     onSubmitStep ()  {
        // validate fields

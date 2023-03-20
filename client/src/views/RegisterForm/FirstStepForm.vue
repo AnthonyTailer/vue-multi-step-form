@@ -64,7 +64,7 @@ export default {
       }]
     }
   },
-  emits: ['submitValidStep', 'submitPreviousStep'],
+  emits: ['submitValidStep', 'submitPreviousStep', 'submitFinalStep'],
   methods: {
     onSubmitStep ()  {
        // validate fields
