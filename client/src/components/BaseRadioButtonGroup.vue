@@ -2,7 +2,8 @@
   <div class="radio-container">
     <div :class="['radio-button-group', { invalid: !!error }]">
       <label :for="option.value" v-for="option in options" :key="option.value">
-        <input
+        <div>
+          <input
           :id="option.value"
           type="radio"
           :name="name"
@@ -10,7 +11,8 @@
           :checked="option.checked"
           @input="$emit('update:modelValue', option.value)"
         />
-        {{ option.label }}
+        </div>
+        <div>{{ option.label }}</div> 
       </label>
     </div>
     <span v-if="error">{{ error }}</span>
@@ -55,11 +57,16 @@ export default {
   justify-content: flex-start;
 }
 
-.radio-button-group>label {
-  padding-right: 5px;
+.radio-button-group > label {
+  padding-right: 10px;
   display: flex;
   align-items: center;
-  justify-content: center;
+}
+
+.radio-button-group > label > div {
+  height: 100%;
+  display: flex;
+  align-items: center;
 }
 
 .invalid {
@@ -77,7 +84,7 @@ input[type="radio"] {
   background-clip: content-box;
   border: 1px solid var(--vt-c-black-mute);
   border-radius: 50%;
-  margin: 0 5px;
+  margin-right: 5px;
 }
 
 input[type="radio"]:checked {
