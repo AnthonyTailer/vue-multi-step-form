@@ -1,7 +1,11 @@
 <template>
-  <h1>Etapa 2 de 4</h1>
-  <h1>{{ formValues.personType === 'individual' ? 'Pessoa Física' : 'Pessoa Jurídica' }}</h1>
+  <header class="header">
+    <h1 class="header-step-title">{{ formValues.personType === 'individual' ? 'Pessoa Física' : 'Pessoa Jurídica' }}</h1>
+    <h3 class="header-step-subtitle">Etapa <span class="header-step-count">2</span> de 4</h3>
+    <hr class="dotted">
+  </header>
 
+  <main>
     <div v-if="formValues.personType === 'individual'">
       <BaseInput 
         name="name"
@@ -63,20 +67,23 @@
         :error="v$.phone.$errors?.[0]?.$message"
       />
     </div>
+  </main>
+
+  <footer class="footer">
+    <BaseButton
+      @click="onSubmitStep"
+    >
+      Continuar
+    </BaseButton>
 
     <BaseButton
-        @click="onSubmitStep"
-      >
-        Continuar
-      </BaseButton>
-
-      <BaseButton
-        v-if="currentStep > 0"
-        outlined
-        @click="onPreviousStep"
-      >
-        Voltar
-      </BaseButton>
+      v-if="currentStep > 0"
+      outlined
+      @click="onPreviousStep"
+    >
+      Voltar
+    </BaseButton>
+  </footer>
 </template>
 <script>
 import useValidate from "@vuelidate/core";

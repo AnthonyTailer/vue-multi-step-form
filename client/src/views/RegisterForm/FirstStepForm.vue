@@ -1,26 +1,32 @@
 <template>
-  <h1>Etapa 1 de 4</h1>
-  <h1>Seja bem vindo(a)</h1>
+  <header class="header">
+    <h1 class="header-step-title">Seja bem vindo(a)</h1>
+    <h3 class="header-step-subtitle">Etapa <span class="header-step-count">1</span> de 4</h3>
+    <hr class="dotted">
+  </header>
 
+  <main>
     <BaseInput
       name="email"
       label="Endereço de E-mail"
       v-model="formValues.email"
       :error="v$.email.$errors?.[0]?.$message"
     />
-
     <BaseRadioButtonGroup
       name="personType"
       :options="personTypeOptions"
       v-model="formValues.personType"
       :error="v$.personType.$errors?.[0]?.$message"
     />
+  </main>
 
+  <footer class="footer">
     <BaseButton
-        @click="onSubmitStep"
-      >
-        Continuar
-      </BaseButton>
+      @click="onSubmitStep"
+    >
+      Continuar
+    </BaseButton>
+  </footer>
 </template>
 <script>
 import useValidate from "@vuelidate/core";

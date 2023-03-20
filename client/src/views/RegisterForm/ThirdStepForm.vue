@@ -1,7 +1,11 @@
 <template>
-  <h1>Etapa 3 de 4</h1>
-  <h1>Senha de acesso</h1>
+  <header class="header">
+    <h1 class="header-step-title">Senha de acesso</h1>
+    <h3 class="header-step-subtitle">Etapa <span class="header-step-count">3</span> de 4</h3>
+    <hr class="dotted">
+  </header>
 
+  <main>
     <BaseInput
       name="password"
       type="password"
@@ -9,7 +13,9 @@
       v-model="formValues.password"
       :error="v$.password.$errors?.[0]?.$message"
     />
+  </main>
 
+  <footer class="footer">
     <BaseButton
       @click="onSubmitStep"
     >
@@ -23,6 +29,7 @@
     >
       Voltar
     </BaseButton>
+  </footer>
 </template>
 <script>
 import useValidate from "@vuelidate/core";
