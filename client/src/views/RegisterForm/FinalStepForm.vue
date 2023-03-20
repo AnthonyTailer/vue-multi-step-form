@@ -11,6 +11,7 @@
       label="Endereço de E-mail"
       v-model="formValues.email"
       :error="v$.email.$errors?.[0]?.$message"
+      :disabled="isSubmitting"
     />
 
     <div v-if="formValues.personType === 'individual'">
@@ -19,6 +20,7 @@
         label="Nome" 
         v-model="formValues.name"
         :error="v$.name.$errors?.[0]?.$message"
+        :disabled="isSubmitting"
       />
 
       <BaseInput 
@@ -26,6 +28,7 @@
         label="CPF" 
         v-model="formValues.cpf"
         :error="v$.cpf.$errors?.[0]?.$message"
+        :disabled="isSubmitting"
       />
 
       <BaseInput 
@@ -34,6 +37,7 @@
         label="Data de Nascimento" 
         v-model="formValues.birth"
         :error="v$.birth.$errors?.[0]?.$message"
+        :disabled="isSubmitting"
       />
 
       <BaseInput 
@@ -41,6 +45,7 @@
         label="Telefone" 
         v-model="formValues.phone"
         :error="v$.phone.$errors?.[0]?.$message"
+        :disabled="isSubmitting"
       />
     </div>
 
@@ -50,6 +55,7 @@
         label="Razão Social" 
         v-model="formValues.corporateName"
         :error="v$.corporateName.$errors?.[0]?.$message"
+        :disabled="isSubmitting"
       />
 
       <BaseInput 
@@ -57,6 +63,7 @@
         label="CNPJ" 
         v-model="formValues.cnpj"
         :error="v$.cnpj.$errors?.[0]?.$message"
+        :disabled="isSubmitting"
       />
 
       <BaseInput 
@@ -65,6 +72,7 @@
         label="Data de Abertura" 
         v-model="formValues.openingDate"
         :error="v$.openingDate.$errors?.[0]?.$message"
+        :disabled="isSubmitting"
       />
 
       <BaseInput 
@@ -72,6 +80,7 @@
         label="Telefone" 
         v-model="formValues.phone"
         :error="v$.phone.$errors?.[0]?.$message"
+        :disabled="isSubmitting"
       />
     </div>
   
@@ -80,6 +89,7 @@
       label="Sua senha"
       v-model="formValues.password"
       :error="v$.password.$errors?.[0]?.$message"
+      :disabled="isSubmitting"
     />
   </main>
 
@@ -88,12 +98,14 @@
       v-if="currentStep > 0"
       outlined
       @click="onPreviousStep"
+      :disabled="isSubmitting"
     >
       Voltar
     </BaseButton>
 
     <BaseButton
       @click="onSubmitStep"
+      :disabled="isSubmitting"
     >
       Cadastrar
     </BaseButton>
@@ -110,7 +122,8 @@ import BaseButton from '../../components/BaseButton.vue';
 export default {
   props : {
     currentStep: { type: Number, default: 0 },
-    formValues: { type: Object, default: {} }
+    formValues: { type: Object, default: {} },
+    isSubmitting: { type: Boolean, default: false }
   },
   components: { BaseInput, BaseButton },
   setup(props) {
@@ -131,11 +144,10 @@ export default {
       this.$emit('submitPreviousStep')
     },
     onSubmitStep ()  {
-       // validate fields
+      // validate fields
       this.v$.$validate(); // checks all inputs
 
       if (!this.v$.$error) {
-        console.log('FINAL STEP is VALID')
         // pass to the POST backend step
         this.$emit('submitFinalStep')
       }
