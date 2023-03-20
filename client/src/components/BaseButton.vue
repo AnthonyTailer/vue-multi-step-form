@@ -33,4 +33,13 @@ export default {
     border: 1px solid var(--color-button);
     color:  var(--color-button);
   }
+
+  .baseButton.outlined:hover {
+    border: 1px solid var(--vt-c-pomegranate-dark);
+    color:  var(--vt-c-pomegranate-dark);
+  }
+
+  .baseButton:not(.outlined):hover {
+    background-color: var(--vt-c-pomegranate-dark)
+  }
 </style>
