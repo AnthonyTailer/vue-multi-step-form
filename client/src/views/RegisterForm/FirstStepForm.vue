@@ -11,18 +11,21 @@
       label="Endereço de E-mail"
       v-model="formValues.email"
       :error="v$.email.$errors?.[0]?.$message"
+      :disabled="isSubmitting"
     />
     <BaseRadioButtonGroup
       name="personType"
       :options="personTypeOptions"
       v-model="formValues.personType"
       :error="v$.personType.$errors?.[0]?.$message"
+      :disabled="isSubmitting"
     />
   </main>
 
   <footer class="footer">
     <BaseButton
       @click="onSubmitStep"
+      :disabled="isSubmitting"
     >
       Continuar
     </BaseButton>
@@ -38,7 +41,8 @@ import BaseButton from '../../components/BaseButton.vue';
 export default {
   props : {
     currentStep: { type: Number, default: 0 },
-    formValues: { type: Object, default: {} }
+    formValues: { type: Object, default: {} },
+    isSubmitting: { type: Boolean, default: false }
   },
   components: { BaseInput, BaseRadioButtonGroup, BaseButton },
   setup(props) {

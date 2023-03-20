@@ -12,6 +12,7 @@
       label="Sua senha"
       v-model="formValues.password"
       :error="v$.password.$errors?.[0]?.$message"
+      :disabled="isSubmitting"
     />
   </main>
 
@@ -20,12 +21,14 @@
       v-if="currentStep > 0"
       outlined
       @click="onPreviousStep"
+      :disabled="isSubmitting"
     >
       Voltar
     </BaseButton>
 
     <BaseButton
       @click="onSubmitStep"
+      :disabled="isSubmitting"
     >
       Continuar
     </BaseButton>
@@ -64,7 +67,6 @@ export default {
 
       if (!this.v$.$error) {
         // pass to the next step
-        console.log(`Valid STEP ${this.currentStep}`)
         this.$emit('submitValidStep')
       }
     }

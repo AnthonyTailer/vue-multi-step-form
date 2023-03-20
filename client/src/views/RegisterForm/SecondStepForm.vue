@@ -12,6 +12,7 @@
         label="Nome" 
         v-model="formValues.name"
         :error="v$.name.$errors?.[0]?.$message"
+        :disabled="isSubmitting"
       />
 
       <BaseInput 
@@ -19,6 +20,7 @@
         label="CPF" 
         v-model="formValues.cpf"
         :error="v$.cpf.$errors?.[0]?.$message"
+        :disabled="isSubmitting"
       />
 
       <BaseInput 
@@ -27,6 +29,7 @@
         label="Data de Nascimento" 
         v-model="formValues.birth"
         :error="v$.birth.$errors?.[0]?.$message"
+        :disabled="isSubmitting"
       />
 
       <BaseInput 
@@ -34,6 +37,7 @@
         label="Telefone" 
         v-model="formValues.phone"
         :error="v$.phone.$errors?.[0]?.$message"
+        :disabled="isSubmitting"
       />
     </div>
 
@@ -43,6 +47,7 @@
         label="Razão Social" 
         v-model="formValues.corporateName"
         :error="v$.corporateName.$errors?.[0]?.$message"
+        :disabled="isSubmitting"
       />
 
       <BaseInput 
@@ -50,6 +55,7 @@
         label="CNPJ" 
         v-model="formValues.cnpj"
         :error="v$.cnpj.$errors?.[0]?.$message"
+        :disabled="isSubmitting"
       />
 
       <BaseInput 
@@ -58,6 +64,7 @@
         label="Data de Abertura" 
         v-model="formValues.openingDate"
         :error="v$.openingDate.$errors?.[0]?.$message"
+        :disabled="isSubmitting"
       />
 
       <BaseInput 
@@ -65,6 +72,7 @@
         label="Telefone" 
         v-model="formValues.phone"
         :error="v$.phone.$errors?.[0]?.$message"
+        :disabled="isSubmitting"
       />
     </div>
   </main>
@@ -74,12 +82,14 @@
       v-if="currentStep > 0"
       outlined
       @click="onPreviousStep"
+      :disabled="isSubmitting"
     >
       Voltar
     </BaseButton>
 
     <BaseButton
       @click="onSubmitStep"
+      :disabled="isSubmitting"
     >
       Continuar
     </BaseButton>
@@ -94,7 +104,8 @@ import BaseButton from '../../components/BaseButton.vue';
 export default {
   props : {
     currentStep: { type: Number, default: 0 },
-    formValues: { type: Object, default: {} }
+    formValues: { type: Object, default: {} },
+    isSubmitting: { type: Boolean, default: false }
   },
   components: { BaseInput, BaseButton },
   setup(props) {
@@ -115,7 +126,6 @@ export default {
 
       if (!this.v$.$error) {
         // pass to the next step
-        console.log(`Valid STEP ${this.currentStep}`)
         this.$emit('submitValidStep')
       }
     },
