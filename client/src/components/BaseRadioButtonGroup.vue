@@ -56,7 +56,7 @@ export default {
 }
 
 .radio-button-group>label {
-  padding: 5px;
+  padding-right: 5px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -75,7 +75,7 @@ input[type="radio"] {
   height: 15px;
   padding: 2px;
   background-clip: content-box;
-  border: 2px solid var(--vt-c-indigo);
+  border: 1px solid var(--vt-c-black-mute);
   border-radius: 50%;
   margin: 0 5px;
 }

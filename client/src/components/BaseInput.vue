@@ -40,7 +40,7 @@ export default {
 .input-container > input {
   width: 100%;
   padding: 12px 20px;
-  margin: 8px 0;
+  margin: 3px 0;
   display: inline-block;
   border: 1px solid var(--vt-c-black-mute);
   border-radius: 4px;

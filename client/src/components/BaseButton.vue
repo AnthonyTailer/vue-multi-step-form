@@ -24,6 +24,8 @@ export default {
     text-align: center;
     color: #fff;
     max-height: 48px;
+    flex: 1;
+    line-height: 2rem;
   }
 
   .outlined {
