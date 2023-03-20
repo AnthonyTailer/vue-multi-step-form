@@ -71,17 +71,17 @@
 
   <footer class="footer">
     <BaseButton
-      @click="onSubmitStep"
-    >
-      Continuar
-    </BaseButton>
-
-    <BaseButton
       v-if="currentStep > 0"
       outlined
       @click="onPreviousStep"
     >
       Voltar
+    </BaseButton>
+
+    <BaseButton
+      @click="onSubmitStep"
+    >
+      Continuar
     </BaseButton>
   </footer>
 </template>
