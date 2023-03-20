@@ -14,19 +14,21 @@ const cpfCnpjValidation = (value) =>
     /([0-9]{2}[\.]?[0-9]{3}[\.]?[0-9]{3}[\/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2})/
   );
 
+export const INITIAL_STATE = {
+  email: "",
+  personType: "",
+  name: "",
+  cpf: "",
+  birth: "",
+  phone: "",
+  corporateName: "",
+  cnpj: "",
+  openingDate: "",
+  password: "",
+};
+
 export default function useForm() {
-  const state = reactive({
-    email: "",
-    personType: "",
-    name: "",
-    cpf: "",
-    birth: "",
-    phone: "",
-    corporateName: "",
-    cnpj: "",
-    openingDate: "",
-    password: "",
-  });
+  const state = reactive(INITIAL_STATE);
 
   const getValidationRules = (state) => {
     const getFirstStepRules = () => ({
