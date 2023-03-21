@@ -26,6 +26,7 @@ export default {
     max-height: 48px;
     flex: 1;
     line-height: 2rem;
+    font-size: 1rem;
   }
 
   .outlined {

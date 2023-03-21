@@ -17,7 +17,7 @@
         <div class="modal-footer">
           <hr class="dotted">
           <slot name="footer">
-            <BaseButton @click="$emit('close')">
+            <BaseButton outlined @click="$emit('close')">
               OK
             </BaseButton>
           </slot>
@@ -72,6 +72,8 @@ const props = defineProps({
 }
 
 .modal-body {
+  display: flex;
+  align-items: center;
   margin: 20px 0;
   min-height: 50px;
 }

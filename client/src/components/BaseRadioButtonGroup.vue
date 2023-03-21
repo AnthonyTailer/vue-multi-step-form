@@ -15,7 +15,9 @@
         <div>{{ option.label }}</div> 
       </label>
     </div>
-    <span v-if="error">{{ error }}</span>
+    <div class="input-error-container">
+      <span v-if="error">{{ error }}</span>
+    </div>
   </div>
 </template>
 <script>
@@ -49,7 +51,7 @@ export default {
 }
 
 .radio-button-group {
-  margin: 8px 0;
+  margin: 3px 0;
   padding: 15px 20px;
   border: 1px solid var(--vt-c-black-mute);
   border-radius: 4px;
@@ -91,9 +93,14 @@ input[type="radio"]:checked {
   background-color: var(--vt-c-pomegranate);
 }
 
+.input-error-container {
+  height: 20px;
+}
+
 span {
   font-size: 0.8rem;
   color: var(--color-error);
   margin: 5px 0px;
+  transition: ease-in 0.5s;
 }
 </style>

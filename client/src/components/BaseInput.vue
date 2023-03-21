@@ -8,7 +8,9 @@
       @input="$emit('update:modelValue', $event.target.value)"
       :aria-invalid="!!error"
     >
-    <span v-if="error">{{ error }}</span>
+    <div class="input-error-container">
+      <span v-if="error">{{ error }}</span>
+    </div>
   </div>
 </template>
 
@@ -47,6 +49,10 @@ export default {
   box-sizing: border-box;
 }
 
+.input-error-container {
+  height: 20px;
+}
+
 .invalid > input {
   border-color: var(--color-error);
 }
@@ -55,5 +61,6 @@ export default {
   font-size: 0.8rem;
   color: var(--color-error);
   margin: 5px 0px;
+  transition: ease-in 0.5s;
 }
 </style>
