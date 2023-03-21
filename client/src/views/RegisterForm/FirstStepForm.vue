@@ -76,7 +76,6 @@ export default {
 
       if (!this.v$.$error) {
         // pass to the next step
-        console.log(`Valid STEP ${this.currentStep}`)
         this.$emit('submitValidStep')
       }
     }

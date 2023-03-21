@@ -104,12 +104,12 @@ app.post(
       .withMessage("A senha informada deve conter ao menos 6 caracteres"),
   ],
   function (req, res) {
-    console.log(req.body);
-
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
+
+    // TODO store in some database
 
     return res.status(201).json({
       message: "O cadastro foi realizado com sucesso!",
