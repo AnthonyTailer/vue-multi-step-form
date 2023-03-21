@@ -25,7 +25,8 @@
 
       <BaseInput 
         name="cpf"
-        label="CPF" 
+        label="CPF"
+        v-mask-cpf
         v-model="formValues.cpf"
         :error="v$.cpf.$errors?.[0]?.$message"
         :disabled="isSubmitting"
@@ -37,14 +38,6 @@
         label="Data de Nascimento" 
         v-model="formValues.birth"
         :error="v$.birth.$errors?.[0]?.$message"
-        :disabled="isSubmitting"
-      />
-
-      <BaseInput 
-        name="phone"
-        label="Telefone" 
-        v-model="formValues.phone"
-        :error="v$.phone.$errors?.[0]?.$message"
         :disabled="isSubmitting"
       />
     </div>
@@ -60,7 +53,8 @@
 
       <BaseInput 
         name="cnpj"
-        label="CNPJ" 
+        label="CNPJ"
+        v-mask-cnpj
         v-model="formValues.cnpj"
         :error="v$.cnpj.$errors?.[0]?.$message"
         :disabled="isSubmitting"
@@ -74,15 +68,16 @@
         :error="v$.openingDate.$errors?.[0]?.$message"
         :disabled="isSubmitting"
       />
-
-      <BaseInput 
-        name="phone"
-        label="Telefone" 
-        v-model="formValues.phone"
-        :error="v$.phone.$errors?.[0]?.$message"
-        :disabled="isSubmitting"
-      />
     </div>
+
+    <BaseInput 
+      name="phone"
+      label="Telefone"
+      v-mask-phone.br
+      v-model="formValues.phone"
+      :error="v$.phone.$errors?.[0]?.$message"
+      :disabled="isSubmitting"
+    />
   
     <BaseInput
       name="password"

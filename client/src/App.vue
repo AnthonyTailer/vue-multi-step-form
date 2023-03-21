@@ -95,8 +95,10 @@ const postRegistrationHandler = async () => {
     onError: (data) => {
       modal.show = true
       modal.header = "Erro ao realizar o cadastro!"
-      modal.body = data?.response?.message
-      // show errors
+      
+      if (Array.isArray(data?.response?.errors)) {
+        modal.body = data.response.errors.map(error => error.msg).join(". \n")
+      }
     }
   });
 }
